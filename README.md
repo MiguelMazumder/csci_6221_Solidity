@@ -31,6 +31,9 @@ These files in this directory of the biomarker project will demonstrate how to t
 
   The n10s_unique_uri constraint is used in the context of the NeoSemantics (n10s) plugin for Neo4j when working with RDF data. This constraint ensures that URIs     (Uniform Resource Identifiers) used in RDF data are unique among nodes of type Resource in the Neo4j graph. This line only needs to be executed once and will       remain until you explicitly remove the constraint (_DROP CONSTRAINT n10s_unique_uri;_)
 
-5. 
+5. Next, run these two queries (Ensure backslashes are consistent with operating system: 
+   ***ALL n10s.graphconfig.init();
+   CALL n10s.rdf.import.fetch("file:///Address_of_nt_file.nt", "N-Triples");***
+
 7. 
 8. 
