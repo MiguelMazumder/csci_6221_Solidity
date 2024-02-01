@@ -27,13 +27,23 @@ These files in this directory of the biomarker project will demonstrate how to t
 1. Click on your DBMS again and start it, once started click the open tab for a neo4j browser
 2. Ensure APOC and Neosemantics (n10s) were function properly by executing command "***SHOW PROCEDURES***"
    There should be apoc, dbms, and n10s procedures. (If only dbms procedures are available, perform optional step 4 of Neo4J installation)
-4. Run this query: ***CREATE CONSTRAINT n10s_unique_uri FOR (r:Resource) REQUIRE r.uri IS UNIQUE***
+4. Run this query:
 
-  The n10s_unique_uri constraint is used in the context of the NeoSemantics (n10s) plugin for Neo4j when working with RDF data. This constraint ensures that URIs     (Uniform Resource Identifiers) used in RDF data are unique among nodes of type Resource in the Neo4j graph. This line only needs to be executed once and will       remain until you explicitly remove the constraint (_DROP CONSTRAINT n10s_unique_uri;_)
+   ***CREATE CONSTRAINT n10s_unique_uri FOR (r:Resource) REQUIRE r.uri IS UNIQUE***
+
+  *The n10s_unique_uri constraint is used in the context of the NeoSemantics (n10s) plugin for Neo4j when working with RDF data. This constraint ensures that URIs     (Uniform Resource Identifiers) used in RDF data are unique among nodes of type Resource in the Neo4j graph. This line only needs to be executed once and will       remain until you explicitly remove the constraint (_DROP CONSTRAINT n10s_unique_uri;_)
 
 5. Next, run these two queries (Ensure backslashes are consistent with operating system: 
    ***ALL n10s.graphconfig.init();
    CALL n10s.rdf.import.fetch("file:///Address_of_nt_file.nt", "N-Triples");***
 
-7. 
-8. 
+## Sample Queries from Knowledge graph
+To execute a query on the knowledge graph using Cypher, an example is provided for an understanding of how it works
+
+***MATCH (startNode)-[r]-(endNode);***
+
+***WHERE endNode.uri = 'http://purl.obolibrary.org/obo/UBERON_0000178'***
+
+***RETURN startNode, r, endNode;***
+
+This query retrieves patterns in the graph where there is a relationship between startNode and endNode, and the endNode has a specific URI value. It then returns the relevant nodes and relationship information for those patterns. In this case, the URI value is entity type blood, hence nodes pointing to the specified node will be biomarkers that are found from blood samples
