@@ -14,7 +14,7 @@ These files in this directory of the biomarker project will demonstrate how to t
    
    _apoc.import.file.parallel.enabled=true_
 
-**For detailed instructions of APOC and Neoseamtics (n10s) plugin installation**: [APOC installation](https://neo4j.com/labs/apoc/4.1/installation/) and [Neosemantics installation](https://neo4j.com/labs/neosemantics/installation/).
+<sub>**For detailed instructions of APOC and Neoseamtics (n10s) plugin installation**: [APOC installation](https://neo4j.com/labs/apoc/4.1/installation/) and [Neosemantics installation](https://neo4j.com/labs/neosemantics/installation/).</sub>
    
 ## Neo4j Setup
 1. Open up Neo4J desktop and create a new project.
@@ -31,11 +31,17 @@ These files in this directory of the biomarker project will demonstrate how to t
 
    ***CREATE CONSTRAINT n10s_unique_uri FOR (r:Resource) REQUIRE r.uri IS UNIQUE***
 
-  *The n10s_unique_uri constraint is used in the context of the NeoSemantics (n10s) plugin for Neo4j when working with RDF data. This constraint ensures that URIs     (Uniform Resource Identifiers) used in RDF data are unique among nodes of type Resource in the Neo4j graph. This line only needs to be executed once and will       remain until you explicitly remove the constraint (_DROP CONSTRAINT n10s_unique_uri;_)
+  <sub>*The n10s_unique_uri constraint is used in the context of the NeoSemantics (n10s) plugin for Neo4j when working with RDF data. This constraint ensures that URIs     (Uniform Resource Identifiers) used in RDF data are unique among nodes of type Resource in the Neo4j graph. This line only needs to be executed once and will       remain until you explicitly remove the constraint (_DROP CONSTRAINT n10s_unique_uri;_)</sub>
 
-5. Next, run these two queries (Ensure backslashes are consistent with operating system: 
+5. Next, run these two queries (Ensure backslashes are consistent with operating system:
+6. 
    ***ALL n10s.graphconfig.init();
    CALL n10s.rdf.import.fetch("file:///Address_of_nt_file.nt", "N-Triples");***
+   
+5.5 (Optional) If you are pulling data directly from the Oncomx dataset on github, run the following queries instead:
+
+   ***ALL n10s.graphconfig.init();
+   CALL n10s.rdf.import.fetch("https://raw.githubusercontent.com/location_of_oncomx_triples_dataset.nt)", "N-Triples");***
 
 ## Sample Queries from Knowledge graph
 To execute a query on the knowledge graph using Cypher, an example is provided for an understanding of how it works
