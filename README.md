@@ -5,14 +5,16 @@ These files in this directory of the biomarker project will demonstrate how to t
 1. Download and install Neo4j from these instructions: [Neo4j installation](https://neo4j.com/docs/desktop-manual/current/installation/download-installation).
 2. Move the **apoc-5.15.0-cor.jar** file from ***'C:\\...\\.Neo4jDesktop\\relate-data\\dbmss\\name_of_dbms\\labs*** to ***C:\\...\\.Neo4jDesktop\\relate-data\\dbmss\\name_of_dbms\\plugins***
 3. In the ***C:\\...\\.Neo4jDesktop\\relate-data\\dbmss\\name_of_dbms\\conf\\neo4J.conf*** file, add the following line:
-   
-   _dbms.unmanaged_extension_classes=n10s.endpoint=/rdf_
+   ```javascript
+   dbms.unmanaged_extension_classes=n10s.endpoint=/rdf
+   ```
 
 4. (Optional) Add a file named **apoc.conf** to the ***C:\\...\\.Neo4jDesktop\\relate-data\\dbmss\\name_of_dbms\\conf*** directory that contains the following lines:
+   ```javascript
+   apoc.import.file.enabled=true
    
-   _apoc.import.file.enabled=true_
-   
-   _apoc.import.file.parallel.enabled=true_
+   apoc.import.file.parallel.enabled=true
+   ```
 
 <sub>**For detailed instructions of APOC and Neoseamtics (n10s) plugin installation**: [APOC installation](https://neo4j.com/labs/apoc/4.1/installation/) and [Neosemantics installation](https://neo4j.com/labs/neosemantics/installation/).</sub>
    
@@ -27,29 +29,32 @@ These files in this directory of the biomarker project will demonstrate how to t
 1. Click on your DBMS again and start it, once started click the open tab for a neo4j browser
 2. Ensure APOC and Neosemantics (n10s) were function properly by executing command "***SHOW PROCEDURES***"
    There should be apoc, dbms, and n10s procedures. (If only dbms procedures are available, perform optional step 4 of Neo4J installation)
-4. Run this query:
+3. Run this query:
 
    ***CREATE CONSTRAINT n10s_unique_uri FOR (r:Resource) REQUIRE r.uri IS UNIQUE***
 
-  <sub>*The n10s_unique_uri constraint is used in the context of the NeoSemantics (n10s) plugin for Neo4j when working with RDF data. This constraint ensures that URIs     (Uniform Resource Identifiers) used in RDF data are unique among nodes of type Resource in the Neo4j graph. This line only needs to be executed once and will       remain until you explicitly remove the constraint (_DROP CONSTRAINT n10s_unique_uri;_)</sub>
+<sub>*The n10s_unique_uri constraint is used in the context of the NeoSemantics (n10s) plugin for Neo4j when working with RDF data. This constraint ensures that URIs     (Uniform Resource Identifiers) used in RDF data are unique among nodes of type Resource in the Neo4j graph. This line only needs to be executed once and will       remain until you explicitly remove the constraint (_DROP CONSTRAINT n10s_unique_uri;_)</sub>
 
-5. Next, run these two queries (Ensure backslashes are consistent with operating system:
-6. 
-   ***ALL n10s.graphconfig.init();
-   CALL n10s.rdf.import.fetch("file:///Address_of_nt_file.nt", "N-Triples");***
+4. Next, run these two queries (Ensure backslashes are consistent with operating system:
+   ```javascript
+   ALL n10s.graphconfig.init();
+   CALL n10s.rdf.import.fetch("file:///Address_of_nt_file.nt", "N-Triples");
+   ```
    
-5.5 (Optional) If you are pulling data directly from the Oncomx dataset on github, run the following queries instead:
-
-   ***ALL n10s.graphconfig.init();
-   CALL n10s.rdf.import.fetch("https://raw.githubusercontent.com/location_of_oncomx_triples_dataset.nt)", "N-Triples");***
+5. (Optional) If you are pulling data directly from the Oncomx dataset on github, run the following queries instead:
+   ```javascript
+   ALL n10s.graphconfig.init();
+   CALL n10s.rdf.import.fetch("https://raw.githubusercontent.com/location_of_oncomx_triples_dataset.nt)", "N-Triples");
+   ```
 
 ## Sample Queries from Knowledge graph
 To execute a query on the knowledge graph using Cypher, an example is provided for an understanding of how it works
+```javascript
+MATCH (startNode)-[r]-(endNode);
 
-***MATCH (startNode)-[r]-(endNode);***
+WHERE endNode.uri = 'http://purl.obolibrary.org/obo/UBERON_0000178'
 
-***WHERE endNode.uri = 'http://purl.obolibrary.org/obo/UBERON_0000178'***
-
-***RETURN startNode, r, endNode;***
+RETURN startNode, r, endNode;
+```
 
 This query retrieves patterns in the graph where there is a relationship between startNode and endNode, and the endNode has a specific URI value. It then returns the relevant nodes and relationship information for those patterns. In this case, the URI value is entity type blood, hence nodes pointing to the specified node will be biomarkers that are found from blood samples
