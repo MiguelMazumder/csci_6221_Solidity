@@ -57,4 +57,4 @@ WHERE endNode.uri = 'http://purl.obolibrary.org/obo/UBERON_0000178'
 RETURN startNode, r, endNode;
 ```
 
-This query retrieves patterns in the graph where there is a relationship between startNode and endNode, and the endNode has a specific URI value. It then returns the relevant nodes and relationship information for those patterns. In this case, the URI value is entity type blood, hence nodes pointing to the specified node will be biomarkers that are found from blood samples
+<sub>*This query retrieves patterns in the graph where there is a relationship between startNode and endNode, and the endNode has a specific URI value. It then returns the relevant nodes and relationship information for those patterns. In this case, the URI value is entity type blood, hence nodes pointing to the specified node will be biomarkers that are found from blood samples</sub>
