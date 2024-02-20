@@ -50,7 +50,7 @@ These files in this directory of the biomarker project will demonstrate how to t
 ## Sample Queries from Knowledge graph
 To execute a query on the knowledge graph using Cypher, an example is provided for an understanding of how it works
 ```javascript
-MATCH (startNode)-[r]-(endNode);
+MATCH (startNode)-[r]-(endNode)
 
 WHERE endNode.uri = 'http://purl.obolibrary.org/obo/UBERON_0000178'
 
