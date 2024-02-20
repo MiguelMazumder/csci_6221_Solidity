@@ -23,6 +23,7 @@ These files in this directory of the biomarker project will demonstrate how to t
 2. Add a new DBMS
 3. Click on your DBMS and on the right a panel will show up with Details, Plugins, and Upgrade
 4. Click on Plugins and install APOC and Neosemantics (n10s) plugins (Ensure plugins are compatible)
+
 ![Plugins_img](https://github.com/MiguelMazumder/csci_6221_Solidity/assets/72771218/81ab3589-ccab-425c-80a7-4413a1b6bbb1)
 
 ## Produce a Knowledge Graph from N-Triples
@@ -35,7 +36,7 @@ These files in this directory of the biomarker project will demonstrate how to t
 
 <sub>*The n10s_unique_uri constraint is used in the context of the NeoSemantics (n10s) plugin for Neo4j when working with RDF data. This constraint ensures that URIs     (Uniform Resource Identifiers) used in RDF data are unique among nodes of type Resource in the Neo4j graph. This line only needs to be executed once and will       remain until you explicitly remove the constraint (_DROP CONSTRAINT n10s_unique_uri;_)</sub>
 
-4. Next, run these two queries (Ensure backslashes are consistent with operating system:
+4. Next, run these two queries (Ensure backslashes are consistent with operating system):
    ```javascript
    ALL n10s.graphconfig.init();
    CALL n10s.rdf.import.fetch("file:///Address_of_nt_file.nt", "N-Triples");
