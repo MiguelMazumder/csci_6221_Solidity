@@ -31,9 +31,9 @@ These files in this directory of the biomarker project will demonstrate how to t
 2. Ensure APOC and Neosemantics (n10s) were function properly by executing command "***SHOW PROCEDURES***"
    There should be apoc, dbms, and n10s procedures. (If only dbms procedures are available, perform optional step 4 of Neo4J installation)
 3. Run this query:
-```javascript
+   ```javascript
    CREATE CONSTRAINT n10s_unique_uri FOR (r:Resource) REQUIRE r.uri IS UNIQUE
-```
+   ```
 
 <sub>*The n10s_unique_uri constraint is used in the context of the NeoSemantics (n10s) plugin for Neo4j when working with RDF data. This constraint ensures that URIs     (Uniform Resource Identifiers) used in RDF data are unique among nodes of type Resource in the Neo4j graph. This line only needs to be executed once and will       remain until you explicitly remove the constraint (_DROP CONSTRAINT n10s_unique_uri;_)</sub>
 
@@ -51,12 +51,12 @@ These files in this directory of the biomarker project will demonstrate how to t
 
 ## Sample Queries from Knowledge graph
 To execute a query on the knowledge graph using Cypher, an example is provided for an understanding of how it works
-```javascript
-MATCH (startNode)-[r]-(endNode)
+   ```javascript
+   MATCH (startNode)-[r]-(endNode)
 
-WHERE endNode.uri = 'http://purl.obolibrary.org/obo/UBERON_0000178'
+   WHERE endNode.uri = 'http://purl.obolibrary.org/obo/UBERON_0001836'
 
-RETURN startNode, r, endNode;
-```
+   RETURN startNode, r, endNode;
+   ```
 
 <sub>*This query retrieves patterns in the graph where there is a relationship between startNode and endNode, and the endNode has a specific URI value. It then returns the relevant nodes and relationship information for those patterns. In this case, the URI value is entity type blood, hence nodes pointing to the specified node will be biomarkers that are found from blood samples</sub>
