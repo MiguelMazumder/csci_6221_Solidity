@@ -58,5 +58,9 @@ To execute a query on the knowledge graph using Cypher, an example is provided f
 
    RETURN startNode, r, endNode;
    ```
+![](sample_query.png)
 
-<sub>*This query retrieves patterns in the graph where there is a relationship between startNode and endNode, and the endNode has a specific URI value. It then returns the relevant nodes and relationship information for those patterns. In this case, the URI value is entity type blood, hence nodes pointing to the specified node will be biomarkers that are found from blood samples</sub>
+<sub>*This query retrieves patterns in the graph where there is a relationship between startNode and endNode, and the endNode has a specific URI value. It then returns the relevant nodes and relationship information for those patterns. In this case, the URI value is entity type saliva, hence nodes pointing to the specified node will be biomarkers that are found from saliva samples</sub>
+
+Once the ontology set has been published (.owl file), the next step in neo4j would be to use the ontologies to populate the nodes of the knowledge graph with properties as well as convert the query results to a human readable format rather than URI's. The image below would be an example of what that would look like:
+![](sample_KG.png)
