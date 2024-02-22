@@ -31,20 +31,21 @@ These files in this directory of the biomarker project will demonstrate how to t
 2. Ensure APOC and Neosemantics (n10s) were function properly by executing command "***SHOW PROCEDURES***"
    There should be apoc, dbms, and n10s procedures. (If only dbms procedures are available, perform optional step 4 of Neo4J installation)
 3. Run this query:
-
-   ***CREATE CONSTRAINT n10s_unique_uri FOR (r:Resource) REQUIRE r.uri IS UNIQUE***
+```javascript
+   CREATE CONSTRAINT n10s_unique_uri FOR (r:Resource) REQUIRE r.uri IS UNIQUE
+```
 
 <sub>*The n10s_unique_uri constraint is used in the context of the NeoSemantics (n10s) plugin for Neo4j when working with RDF data. This constraint ensures that URIs     (Uniform Resource Identifiers) used in RDF data are unique among nodes of type Resource in the Neo4j graph. This line only needs to be executed once and will       remain until you explicitly remove the constraint (_DROP CONSTRAINT n10s_unique_uri;_)</sub>
 
 4. Next, run these two queries (Ensure backslashes are consistent with operating system):
    ```javascript
-   ALL n10s.graphconfig.init();
+   CALL n10s.graphconfig.init();
    CALL n10s.rdf.import.fetch("file:///Address_of_nt_file.nt", "N-Triples");
    ```
    
 5. (Optional) If you are pulling data directly from the Oncomx dataset on github, run the following queries instead:
    ```javascript
-   ALL n10s.graphconfig.init();
+   CALL n10s.graphconfig.init();
    CALL n10s.rdf.import.fetch("https://raw.githubusercontent.com/location_of_oncomx_triples_dataset.nt)", "N-Triples");
    ```
 
